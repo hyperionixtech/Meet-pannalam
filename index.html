@@ -101,20 +101,35 @@
         function logSelection(drink) {
             let formUrl = '';
             if (drink === 'tea') {
-                formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSct3jSCxJsDa3x_yKGMQ4_fol_1FoEkyvqUDJdsDZYAFEd5VQ/viewform?usp=pp_url&entry.335721195=tea';
+                formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfqvv5b38UtPyxs1fM6dvtkpuhH6K_kNO60nhZuvVseFEt75Q/formResponse';
+                submitToGoogleForm(formUrl, 'Suda Tea');
             } else if (drink === 'coffee') {
-                formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSct3jSCxJsDa3x_yKGMQ4_fol_1FoEkyvqUDJdsDZYAFEd5VQ/viewform?usp=pp_url&entry.335721195=coffee';
+                formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfqvv5b38UtPyxs1fM6dvtkpuhH6K_kNO60nhZuvVseFEt75Q/formResponse';
+                submitToGoogleForm(formUrl, 'Coffee venum ahh ☕');
             } else if (drink === 'juice') {
-                formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSct3jSCxJsDa3x_yKGMQ4_fol_1FoEkyvqUDJdsDZYAFEd5VQ/viewform?usp=pp_url&entry.335721195=tea';
+                formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfqvv5b38UtPyxs1fM6dvtkpuhH6K_kNO60nhZuvVseFEt75Q/formResponse';
+                submitToGoogleForm(formUrl, 'Juice venum ahh 🍹');
             }
+        }
 
+        function submitToGoogleForm(formUrl, answer) {
             const form = document.createElement('form');
             form.action = formUrl;
-            form.method = 'GET';
-            form.target = '_blank';
+            form.method = 'POST';
+            form.target = 'hidden_iframe';
+            form.style.display = 'none';
+
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.name = 'entry.545652798'; // Update this with your Google Form field's entry ID
+            input.value = answer;
+
+            form.appendChild(input);
             document.body.appendChild(form);
+
             form.submit();
         }
     </script>
+    <iframe name="hidden_iframe" style="display:none;"></iframe>
 </body>
 </html>
