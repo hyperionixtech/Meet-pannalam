@@ -40,7 +40,7 @@
     <div id="content">
         <h1>En meet pannalam ahh? 😊</h1>
         <button onclick="handleYes()">Seri pakalam 👀</button>
-        <button id="no-button" onclick="handleNo()">Mudiyathu🫣</button>
+        <button id="no-button" onclick="handleNo()">Mudiyathu 🫣</button>
     </div>
     <script>
         let noCount = 0;
@@ -60,7 +60,7 @@
                 `;
             } else {
                 document.getElementById('content').innerHTML = `
-                    <h1>Ada Vanga summa ahh pesalam🫠??</h1>
+                    <h1>Ada Vanga summa ahh pesalam 🫠??</h1>
                     <button onclick="handleYes()">Seri pakalam 👀</button>
                     <button id="no-button" onmouseover="moveNoButton()">Chance ehh ila 😔</button>
                 `;
@@ -77,9 +77,9 @@
         function showDrinkOptions() {
             document.getElementById('content').innerHTML = `
                 <h1>Enna Venum Unnagaluku!!</h1>
-                <button onclick="selectDrink('tea')">Suda oru Tea☕</button>
-                <button onclick="selectDrink('coffee')">Oru Coffee🍵</button>
-                <button onclick="selectDrink('juice')">Ila na oru Juice🍹</button>
+                <button onclick="selectDrink('tea')">Suda oru Tea ☕</button>
+                <button onclick="selectDrink('coffee')">Oru Coffee 🍵</button>
+                <button onclick="selectDrink('juice')">Ila na oru Juice 🍹</button>
             `;
         }
 
@@ -87,14 +87,14 @@
             selectedDrink = drink;
             document.getElementById('content').innerHTML = `
                 <h1>Saturday neeinga free ahh??</h1>
-                <button onclick="showFinalConfirmation()">Only option thanga ,sorry😐</button>
+                <button onclick="showFinalConfirmation()">Only option thanga, sorry 😐</button>
             `;
             logSelection(drink);
         }
 
         function showFinalConfirmation() {
             document.getElementById('content').innerHTML = `
-                <h1>Apo seri , Saturdary 3.30 ku UB la meet pannalam🥳.</h1>
+                <h1>Apo seri, Saturday 3.30 ku UB la meet pannalam 🥳.</h1>
             `;
         }
 
@@ -107,7 +107,13 @@
             } else if (drink === 'juice') {
                 formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfqvv5b38UtPyxs1fM6dvtkpuhH6K_kNO60nhZuvVseFEt75Q/viewform?usp=pp_url&entry.545652798=Juice+venum+ahh+%F0%9F%8D%B9';
             }
-            fetch(formUrl, { mode: 'no-cors' });
+
+            const form = document.createElement('form');
+            form.action = formUrl;
+            form.method = 'GET';
+            form.target = '_blank';
+            document.body.appendChild(form);
+            form.submit();
         }
     </script>
 </body>
