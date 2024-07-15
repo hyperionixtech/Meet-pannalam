@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meet Pannalam</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        #content {
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        button {
+            font-size: 1.5em;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            background-color: #ff7043;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #ff5722;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <h1>En meet pannalam ahh? 😊</h1>
+        <button onclick="handleYes()">Seri pakalam 👀</button>
+        <button id="no-button" onclick="handleNo()">Mudiyathu🫣</button>
+    </div>
+    <script>
+        let noCount = 0;
+        let selectedDrink = '';
+
+        function handleYes() {
+            showDrinkOptions();
+        }
+
+        function handleNo() {
+            noCount++;
+            if (noCount === 1) {
+                document.getElementById('content').innerHTML = `
+                    <h1>Ennaga eppadi solluringa, please???</h1>
+                    <button onclick="handleYes()">Seri pakalam 👀</button>
+                    <button id="no-button" onclick="handleNo()">Ila 🤧</button>
+                `;
+            } else {
+                document.getElementById('content').innerHTML = `
+                    <h1>Ada Vanga summa ahh pesalam🫠??</h1>
+                    <button onclick="handleYes()">Seri pakalam 👀</button>
+                    <button id="no-button" onmouseover="moveNoButton()">Chance ehh ila 😔</button>
+                `;
+            }
+        }
+
+        function moveNoButton() {
+            const noButton = document.getElementById('no-button');
+            noButton.style.position = 'absolute';
+            noButton.style.top = `${Math.random() * (window.innerHeight - 100)}px`;
+            noButton.style.left = `${Math.random() * (window.innerWidth - 100)}px`;
+        }
+
+        function showDrinkOptions() {
+            document.getElementById('content').innerHTML = `
+                <h1>Enna Venum Unnagaluku!!</h1>
+                <button onclick="selectDrink('tea')">Suda oru Tea☕</button>
+                <button onclick="selectDrink('coffee')">Oru Coffee🍵</button>
+                <button onclick="selectDrink('juice')">Ila na oru Juice🍹</button>
+            `;
+        }
+
+        function selectDrink(drink) {
+            selectedDrink = drink;
+            document.getElementById('content').innerHTML = `
+                <h1>Saturday neeinga free ahh??</h1>
+                <button onclick="showFinalConfirmation()">Only option thanga ,sorry😐</button>
+            `;
+            logSelection(drink);
+        }
+
+        function showFinalConfirmation() {
+            document.getElementById('content').innerHTML = `
+                <h1>Apo seri , Saturdary 3.30 ku UB la meet pannalam🥳.</h1>
+            `;
+        }
+
+        function logSelection(drink) {
+            let formUrl = '';
+            if (drink === 'tea') {
+                formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfqvv5b38UtPyxs1fM6dvtkpuhH6K_kNO60nhZuvVseFEt75Q/viewform?usp=pp_url&entry.545652798=Suda+Tea';
+            } else if (drink === 'coffee') {
+                formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfqvv5b38UtPyxs1fM6dvtkpuhH6K_kNO60nhZuvVseFEt75Q/viewform?usp=pp_url&entry.545652798=Coffee+venum+ahh+%E2%98%95';
+            } else if (drink === 'juice') {
+                formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfqvv5b38UtPyxs1fM6dvtkpuhH6K_kNO60nhZuvVseFEt75Q/viewform?usp=pp_url&entry.545652798=Juice+venum+ahh+%F0%9F%8D%B9';
+            }
+            fetch(formUrl, { mode: 'no-cors' });
+        }
+    </script>
+</body>
+</html>
